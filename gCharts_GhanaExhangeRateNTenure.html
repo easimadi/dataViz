@@ -1,0 +1,84 @@
+
+<i><span style="color: blue;">interactive chart: hover your mouse on points to see values</span></i>
+
+        <!--Load the AJAX API-->
+        <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+        <script type="text/javascript">
+		
+          // Load the Visualization API.
+          google.load('visualization', '1.1', {'packages':['corechart','line']});
+
+          // Set a callback to run when the Google Visualization API is loaded.
+          google.setOnLoadCallback(drawVisualization);
+
+          // Callback that creates and populates a data table,
+          // instantiates the chart, passes in the data and options and
+          // draws it.
+		  
+			function drawVisualization() {
+ 
+			var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?tq=');
+			// Apply query language.
+			query.setQuery('SELECT Year,RAWLINGS1, RAWLINGS2 FROM 197NzMkHGnxxBeaQgfuWfEJn8pOf8E_IvQlMEmHsR' );
+			// Send the query with a callback function.
+			query.send(drawChart);
+ 
+			}
+			
+			function drawChart(response) {
+				if ( response.isError()) {
+					alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+					return;
+				}
+				
+				
+				var data = response.getDataTable();
+				console.log(data);
+				
+				
+				var options = {
+							'title':'Ghana Exchange(Ghc/USD) Vs Political Tenure',
+							'width': 700,
+							'height': 500,
+							annotations: {highContrast: false},
+							bar: {groupWidth: '1000%'},
+							
+							//series: {6: {type: "bars",enableInteractivity: false, } },
+							chartArea: {width: 600},
+							
+							hAxis: {
+								slantedText: true, slantedTextAngle: 90,
+								gridlines: {color: 'gray',count: 2 },showTextEvery: 4,
+								},
+							pointSize: 5,
+							legend: {position: 'none'},
+							
+							vAxis: {
+								title: 'Exchange Rate (Ghc)', 
+								maxValue: 3,
+								gridlines: {color: 'gray'}
+								},
+							tooltip: {isHtml: true},
+
+				}
+				
+				var chart = new google.visualization.LineChart(document.getElementById('chart_post-body-7987572953202425925'));
+				chart.draw(data, options);
+				
+			}
+		  
+          
+        </script>
+      
+
+     
+        <!--Divs that will hold the charts-->
+     
+        <br />
+<div id="chart_post-body-7987572953202425925">
+</div>
+
+
+Chart Showing Exchange Rate under all political tenures of the fourth republic (Not a performance measure ...just a visualisation)<br />
+(Source: <a href="http://www.oanda.com/currency/historical-rates/">Oando.com</a>) <br />
+<br />
