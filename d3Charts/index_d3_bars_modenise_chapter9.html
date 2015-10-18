@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: SVG bar chart with value labels (centered)</title>
+		<script type="text/javascript" src="d3/d3.js"></script>
+		<style type="text/css">
+			/* No style rules here yet */		
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			//Width and height
+			var w = 600;
+			var h = 250;
+			var barPadding = 1;
+			
+			var data = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
+							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+			
+			var xScale = d3.scale.ordinal()
+                .domain(d3.range(dataset.length))
+                .rangeRoundBands([0, w], 0.05);
+				
+			var yScale = d3.scale.linear()
+							.
+			
+			//Create SVG element
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+			var rect = svg.selectAll("rect")
+						.data(data)
+						.enter()
+						.append("rect");
+			  			   
+			rect.attr({ 
+				x: function(d,i){ return xScale(i); },
+				y: function(d){ return h-(d*4);},
+				width: function(d){ return xScale.rangeband();},
+				height: function(d){ return d*4;},
+				fill: function(d) {return "rgb(0, 0, " + (d * 10) + ")"}
+								
+				});
+
+			var text = svg.selectAll("text")
+							.data(data)
+							.enter()
+							.append("text")
+							.text(function(d) {	return d;  })
+			   
+			   text.attr({ 
+					x: function(d,i){ return i* (w/data.length) +(w/data.length - barPadding)/2;},
+					y: function(d){ return h-(d*4) + 15;},
+					'font-family': 'sans-serif',
+					'font-size': '14px',
+					fill: 'white',
+					'text-anchor': 'middle'
+				 });
+				 
+			 
+
+
+			
+		</script>
+	</body>
+</html>
