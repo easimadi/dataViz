@@ -1,6 +1,7 @@
 
 <i><span style="color: blue;">interactive chart: hover your mouse on points to see values</span></i>
 
+
         <!--Load the AJAX API-->
         <script src="https://www.google.com/jsapi" type="text/javascript"></script>
         <script type="text/javascript">
@@ -19,7 +20,8 @@
  
 			var query = new google.visualization.Query('https://www.google.com/fusiontables/gvizdata?tq=');
 			// Apply query language.
-			query.setQuery('SELECT Year,RAWLINGS1, RAWLINGS2 FROM 197NzMkHGnxxBeaQgfuWfEJn8pOf8E_IvQlMEmHsR' );
+			query.setQuery("SELECT * FROM 1p-OCQdc1H2JiGwupvXjYq4b6Eus4gp277W6h3Uhr" );
+							
 			// Send the query with a callback function.
 			query.send(drawChart);
  
@@ -33,6 +35,20 @@
 				
 				
 				var data = response.getDataTable();
+				data.setColumnProperty(2,'role','annotation');
+				data.setColumnProperty(3,'role','tooltip');
+				data.setColumnProperty(5,'role','annotation');
+				data.setColumnProperty(6,'role','tooltip');
+				data.setColumnProperty(8,'role','annotation');
+				data.setColumnProperty(9,'role','tooltip');
+				data.setColumnProperty(11,'role','annotation');
+				data.setColumnProperty(12,'role','tooltip');
+				data.setColumnProperty(14,'role','annotation');
+				data.setColumnProperty(15,'role','tooltip');
+				data.setColumnProperty(17,'role','annotation');
+				data.setColumnProperty(18,'role','tooltip');
+				
+				//data.setColumnProperty(2,'p', {'html': true} );
 				console.log(data);
 				
 				
@@ -58,21 +74,33 @@
 								maxValue: 3,
 								gridlines: {color: 'gray'}
 								},
-							tooltip: {isHtml: true},
+							//tooltip: {isHtml: true},
 
 				}
 				
 				var chart = new google.visualization.LineChart(document.getElementById('chart_post-body-7987572953202425925'));
 				chart.draw(data, options);
 				
+				function createCustomHTMLContent(th,desc)
+             { 
+             return '<table>' +
+              '<thead>' +  '<tr><th>' + th + 
+              '</th></tr>' + 
+              '</thead>'+
+              '<tbody>'+
+               '<tr><td>' + desc +'</td></tr>'+
+              '</tbody>'+
+              '</table>';
+             
+             
+             }
+				
 			}
 		  
           
         </script>
       
-
-     
-        <!--Divs that will hold the charts-->
+       <!--Divs that will hold the charts-->
      
         <br />
 <div id="chart_post-body-7987572953202425925">
