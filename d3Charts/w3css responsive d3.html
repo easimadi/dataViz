@@ -1,0 +1,73 @@
+<html>
+   <head>
+      <title>The W3.CSS Example</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  
+	  <!-- // Responsive Styling which would useful later -->
+	  
+      <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/> 
+  <style>
+
+ 	  #graph {
+	  width: 100%;
+	  height: 100%;
+	  position: absolute;
+	}
+	
+  </style>
+  
+  </head>
+  <script src="http://d3js.org/d3.v3.js"></script>
+ 
+  <body>
+
+
+  <svg id='graph'> </svg>
+  
+  
+
+
+    <script>
+ 	
+	var  width = parseInt(d3.select("#graph").style("width")),
+	     height = parseInt(d3.select("#graph").style("height"));
+
+	var svg = d3.select("#graph")
+			.attr("width", width)
+			.attr("height", height)
+			.style("fill","blue")
+			.append("g")
+		
+	var circle	=	svg.append("circle")
+						.attr("transform", "translate("+ width/2 + "," + height/2 + ")" )
+						.attr("cx", 0)
+						.attr("cy", 0)
+						.attr("r", height/2);
+						
+					
+
+	function updateWindow(){
+
+
+	var  x = parseInt(d3.select("#graph").style("width")),
+		 y = parseInt(d3.select("#graph").style("height"));
+		
+		svg.select("circle")
+					.attr("transform", "translate("+ x/2 + "," + y/2 + ")" )
+						.attr("cx", 0)
+						.attr("cy", 0)
+						.attr("r", y/2);
+						
+		
+		console.log(x);
+		console.log(y);
+	}
+	
+	window.onresize = updateWindow; 			 
+
+			
+  </script>
+  
+     </body>
+</html>
+
