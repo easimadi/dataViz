@@ -14,7 +14,6 @@ What is this repo for ?
 ## Filename Convention
 * HTML files naming convention -->  technology_ChartName_others
 * Model files exhibit useful functionality for learning and application in more advance viz.
-* 
 
 ## Visualization Folders
 * /gCharts -google Charts
