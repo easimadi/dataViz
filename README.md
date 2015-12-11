@@ -22,7 +22,7 @@ What is this repo for ?
 * 
 
 ## Demos
-1. Demo_BarChart_image
+1. [Demo_BarChart_image] (https://github.com/easimadi/dataViz/blob/master/d3Charts/Demo_ResponsiveBar_image.html)
 To demonstrate a bar chart with image and sized based on window.
 
 
