@@ -19,5 +19,10 @@ What is this repo for ?
 * /gCharts -google Charts
 * /d3Charts -D3 Charts
 * /Tableau -Tableau.
+* 
+
+## Demos
+1. Demo_BarChart_image
+To demonstrate a bar chart with image and sized based on window.
 
 
