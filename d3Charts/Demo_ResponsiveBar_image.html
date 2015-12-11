@@ -1,0 +1,144 @@
+<html>
+   <head>
+      <title>The W3.CSS Example</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <!--link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/ -->
+  <style>
+				  
+		  #graph {
+		  width: 100%;
+		  height: 100%;
+		  position: absolute;
+		}
+		
+		.bar {
+		  fill: steelblue;
+		}
+
+		.bar:hover {
+		  fill: brown;
+		}
+
+		.axis {
+		  font: 10px sans-serif;
+		}
+
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		/*.x.axis path {
+		  display: none;
+		} */
+		
+		  .textlabel{
+        font-family: Helvetica, Arial, sans-serif;
+        font-size:14px;
+        text-anchor: middle;
+		fill: white
+    }
+  </style>
+  
+  </head>
+  
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+ 
+  <body>
+
+
+  <svg id='graph'> </svg>
+  
+ 
+  <script>
+		  var data = [
+			{name:"Apples",  value: 12},
+			{name:"Pears" ,  value: 15},
+			{name:"Oranges", value: 21},
+			{name:"Bananas", value: 19}
+		]
+  
+         var margin = {top:20, right:0, bottom:75, left:20},
+			 width = parseInt(d3.select("body").style("width")) -margin.left - margin.right,
+			 height = parseInt(d3.select("body").style("height")) -margin.top -margin.bottom;
+			 
+		 var svg = d3.select("svg#graph")
+						.attr("width", width+ margin.left + margin.right)
+						.attr("height", height +margin.top + margin.bottom);
+		 
+		 var chart = svg.append("g")
+						.attr("transform","translate("+margin.left + "," + margin.top + ")" );
+						
+		// Set Your Scale				
+		 var yScale = d3.scale.linear()
+						.range([height, 0]);
+						
+		 var xScale = d3.scale.ordinal()
+						.rangeRoundBands([0,width], .1);
+						
+		// store the functions that draw Axis
+		var yAxis = d3.svg.axis()
+						.scale(yScale)
+						.orient("left");
+						
+		var xAxis = d3.svg.axis()
+						.scale(xScale)
+						.orient("bottom");
+						
+		// Handle data...set the domain of the axis
+		
+		yScale.domain([10,d3.max(data, function(d){ var a = parseInt(d["value"]); return a + a*.1; })]);
+		
+		xScale.domain(data.map( function(d){return d["name"]; }));
+		
+		var bar = chart.selectAll(".bars")
+					.data(data)
+					.enter()
+					.append("g")
+					.attr("class","bars");
+					
+					
+			bar.append("rect")
+					.attr("class", "bar")
+					.attr("x",function (d) { return xScale(d["name"]); })
+					.attr("y", function(d){ return yScale(d["value"]); })
+					.attr("height",function (d) { return height - yScale(d["value"]);  })
+					.attr("width", function(d){ return xScale.rangeBand(); })
+					
+			bar.append("text")
+					.attr("class", "textlabel")
+					.attr("x", function(d){ return xScale(d["name"]) + (xScale.rangeBand()/2); })
+					.attr("y", function(d){ return yScale(d["value"]) + 15; })
+					.text(function(d){ return ( parseInt(d["value"]) ); });
+					
+			//image from URI ... needs improvement in centering and dynamic resizing of image.		
+			bar.append("image")
+				.attr("xlink:href", "https://github.com/favicon.ico")
+				.attr("x", function(d){ return xScale(d["name"]) + (xScale.rangeBand()/2) -18; })
+				.attr("y", function(d){ return yScale(d["value"]) - parseInt("45em"); })
+				.attr("width", "3em")
+				.attr("height", "3em");
+					
+												
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("transform", "translate(" + parseInt(margin.left+10) + "," + margin.top + ")")
+				.call(yAxis);
+
+		//adding x axis to the bottom of chart
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(" + parseInt(margin.left + 10) + "," + (height + margin.top) + ")")
+			.call(xAxis);
+								
+		 
+  </script>
+  
+  <!-- Useful Tutorial below.
+  http://jrue.github.io/coding/2014/exercises/basicbarchart/ 
+  -->
+  
+</body>
+</html>
