@@ -29,4 +29,7 @@ What is this repo for ?
 1. [D3 introduction] (http://jrue.github.io/coding/2014/exercises/basicbarchart/)
 2. [MarkDown Reference] (https://daringfireball.net/projects/markdown/syntax#link)
 
+## Reviewer
+Dr. Krishna Sapkota
+
 
