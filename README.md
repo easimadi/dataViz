@@ -10,16 +10,14 @@ What is this repo for ?
 ## Location to datafiles
 /data
 
-
-## Filename Convention
-* HTML files naming convention -->  technology_ChartName_others
-* Model files exhibit useful functionality for learning and application in more advance viz.
-
 ## Visualization Folders
 * /gCharts -google Charts
 * /d3Charts -D3 Charts
 * /Tableau -Tableau.
-* 
+
+## Filename Convention
+* HTML files naming convention -->  technology_ChartName_others
+* Model files exhibit useful functionality for learning and application in more advance viz.
 
 ## Demos
 1. [Demo_BarChart_image] (https://github.com/easimadi/dataViz/blob/master/d3Charts/Demo_ResponsiveBar_image.html):
